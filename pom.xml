@@ -13,7 +13,7 @@
     </properties>
 
     <scm>
-        <developerConnection>scm:git:gitolite@atlas.dlp.surfnet.nl:bod-opendrac.git</developerConnection>
+        <developerConnection>scm:git:gitolite@atlas.dlp.surfnet.nl:bod-idd.git</developerConnection>
     </scm>
 
     <dependencies>
