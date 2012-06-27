@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>nl.surfnet.bod</groupId>
+    <artifactId>bod-idd</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1.0-SNAPSHOT</version>
+    <name>bod-idd</name>
+
+    <properties>
+        <axis.version>1.4</axis.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <scm>
+        <developerConnection>scm:git:gitolite@atlas.dlp.surfnet.nl:bod-opendrac.git</developerConnection>
+    </scm>
+
+    <dependencies>
+        <dependency>
+          <groupId>org.apache.axis</groupId>
+          <artifactId>axis</artifactId>
+          <version>${axis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis</groupId>
+            <artifactId>axis-jaxrpc</artifactId>
+            <version>${axis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-discovery</groupId>
+            <artifactId>commons-discovery</artifactId>
+            <version>0.5</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <build>
+         <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${project.build.directory}/generated-sources/axis/wsdl2code</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>axistools-maven-plugin</artifactId>
+                <version>${axis.version}</version>
+                <configuration>
+                    <packageSpace>nl.surfnet.bod.idd.generated</packageSpace>
+                    <sourceDirectory>src/main/resources/wsdl</sourceDirectory>
+                    <outputDirectory>target/generated-sources/axis/wsdl2code</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>idd-ws</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>wsdl2java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>surfnet-releases</id>
+            <name>surfnet-releases</name>
+            <url>http://atlas.dlp.surfnet.nl/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>surfnet-snapshots</id>
+            <name>surfnet-snapshots</name>
+            <url>http://atlas.dlp.surfnet.nl/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>
