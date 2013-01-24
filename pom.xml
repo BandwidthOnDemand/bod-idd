@@ -7,6 +7,12 @@
     <version>0.1.1-SNAPSHOT</version>
     <name>bod-idd</name>
 
+    <parent>
+        <groupId>nl.surfnet.bod</groupId>
+        <artifactId>bod-parent-pom</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+
     <properties>
         <axis.version>1.4</axis.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -76,16 +82,4 @@
         </plugins>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>surfnet-releases</id>
-            <name>surfnet-releases</name>
-            <url>http://atlas.dlp.surfnet.nl/nexus/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>surfnet-snapshots</id>
-            <name>surfnet-snapshots</name>
-            <url>http://atlas.dlp.surfnet.nl/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
